@@ -97,8 +97,18 @@ Include:
 
 ---
 
-## Notes
+---
 
-- Focus on **practical application** and **usability**
-- Ensure **clean UI/UX design**
-- Write **well-documented and maintainable code**
+## 6. Assessment Rubric
+
+| **Criteria**            | **Weight**   | **Description**                                                                 |
+|------------------------|-------------|---------------------------------------------------------------------------------|
+| Engineering Accuracy   | 10 Marks    | Correctness of formulas, units, and petroleum engineering logic                |
+| Code Quality           | 10 Marks    | Clean, modular code, proper error handling, and intuitive dashboard design     |
+| AI Integration         | 10 Marks    | Effective use of AI for complex tasks (not just simple copy-pasting)           |
+| Innovation             | 10 Marks    | Originality of the solution and its market relevance                           |
+| Presentation           | 20 Marks    | Clarity of communication and ability to answer technical questions             |
+
+---
+
+## Total: 60 Marks
