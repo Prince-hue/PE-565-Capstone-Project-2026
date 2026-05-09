@@ -1,114 +1,144 @@
-# PE 565: Computer Programming for Petroleum Engineers  
-## Capstone Project [60 Marks]
+# PetroDCA Production Analytics
 
-**Submission Deadline:** 16th May 2026  
-**Final Presentation:** 17th May 2026 at 5:00 PM  
+PetroDCA is a Streamlit web application for petroleum production analysis and decline curve forecasting. The main application file, `app.py`, provides a browser-based dashboard for loading well production data, visualizing oil/gas/water trends, fitting Arps decline models, estimating EUR, and exporting engineering results.
 
----
+This project was developed for the PE 565 Computer Programming for Petroleum Engineers capstone project.
 
-## 1. Overview
+## What `app.py` Does
 
-The **PE 565 Capstone Project** requires students to design, develop, and deploy a real-world web application tailored for the petroleum industry.  
+`app.py` runs the full PetroDCA web app. It includes:
 
-This project emphasizes the transition from **"scripting" to "software engineering"**, utilizing:
-- AI-Assisted Coding (Large Language Models)
-- Modern development frameworks
-- Enhanced User Experience (UX)
+- Multi-well production data upload from Excel or CSV files
+- Automatic production data cleaning and unit conversion
+- Oil, gas, water, and on-stream production visualization
+- Arps decline curve analysis using:
+  - Exponential decline
+  - Harmonic decline
+  - Hyperbolic decline
+- Automatic best-model selection using fit quality metrics
+- Estimated Ultimate Recovery (EUR) forecasting to an economic limit
+- Dashboard-level field summaries and well comparisons
+- Interactive Plotly charts with light and dark themes
+- Model settings for forecast horizon, economic limit, smoothing, and model selection
+- Reports and export tools for CSV and Excel outputs
+- AI interaction log page documenting AI-assisted development activity
 
----
+The app is designed for petroleum engineers who need a practical way to inspect production history, compare well performance, and generate decline-curve forecasts from real production data.
 
-## 2. Project Objectives
+## Main Engineering Workflow
 
-- Solve a specific **upstream, midstream, or downstream** engineering problem using Python  
-- Build a functional **GUI** using modern frameworks:
-  - Streamlit *(preferred)*  
-  - Flask / Django  
-- Demonstrate effective use of **AI tools** for:
-  - Code generation  
-  - Optimization  
-  - Documentation  
-- Handle **real-world Oil & Gas datasets**
+1. Upload production data in Excel or CSV format.
+2. Select the field name and wells to analyze from the sidebar.
+3. Review production trends in the dashboard and production data pages.
+4. Run decline curve analysis for selected wells.
+5. Compare Exponential, Harmonic, and Hyperbolic model fits.
+6. Estimate EUR using the selected model and economic limit.
+7. Review field-level insights and export results.
 
----
+## Data Format
 
-## 3. Proposed Project Themes (Select One)
+### Excel Input
 
-### Option 1: Production Analysis App
-Develop a web app that:
-- Visualizes real-time production data  
-- Calculates **Decline Curve Analysis (DCA)** parameters *(Arps model)*  
-- Predicts **Estimated Ultimate Recovery (EUR)**  
+The preferred Excel format is one sheet per well, with the sheet name representing the well name.
 
----
+Expected columns include:
 
-### Option 2: CO₂ Storage Evaluation Tool
-Create a tool to:
-- Evaluate **depleted reservoirs or saline aquifers**  
-- Estimate **CO₂ storage capacity** using:
-  - Porosity  
-  - Depth  
-  - Pressure constraints  
+- `Date`
+- `Oil Rate`
+- `Gas Rate`
+- `Water Rate`
+- `On-Stream Hrs`
 
----
+The app is built to handle flexible column naming, but the dataset should contain date and production-rate information for each well.
 
-### Option 3: Carbon Intensity Calculator
-Build a real-time calculator for an **FPSO** that:
-- Computes carbon intensity  
-- Identifies emission hotspots  
-- Recommends mitigation techniques  
+### CSV Input
 
----
+CSV files should contain production records with columns similar to:
 
-## 4. Technical Requirements
+- `date`
+- `oil`
+- `gas`
+- `water`
+- `well`
 
-1. The application must be accessible via a **web browser**  
-2. Must include at least **one complex engineering algorithm**  
-3. Include a mandatory **AI Interaction Log**:
-   - Document how AI was used  
-   - Show bug fixes and design decisions  
-4. The application must be **hosted on a cloud platform**  
+### Included Dataset
 
----
+This repository includes `Volve_Production_By_Well.xlsx`, which can be uploaded through the app sidebar and used as a sample multi-well production dataset.
 
-## 5. Deliverables
+## Installation
 
-### 1. GitHub Repository
-Include:
-- `app.py` (clean and modular)  
-- `requirements.txt`  
-- `README.md`  
+Create and activate a Python virtual environment, then install the required packages:
 
----
+```bash
+pip install -r requirements.txt
+```
 
-### 2. Executive Summary
+The main dependencies are:
 
-#### a. Problem Definition & Engineering Methodology
-- Clearly define the problem  
-- Explain the engineering approach  
+- Streamlit
+- pandas
+- NumPy
+- SciPy
+- Plotly
+- scikit-learn
+- matplotlib
+- python-dotenv
 
-#### b. Software Architecture
-- Include a **flowchart diagram**  
-- Show system structure and data flow  
+## How to Run the App
 
-#### c. Reflection on AI-Assisted Coding
-- What worked well  
-- What challenges were encountered  
-- Lessons learned  
+From the project folder, run:
 
----
+```bash
+streamlit run app.py
+```
 
----
+Streamlit will start a local web server and provide a browser URL, usually:
 
-## 6. Assessment Rubric
+```text
+http://localhost:8501
+```
 
-| **Criteria**            | **Weight**   | **Description**                                                                 |
-|------------------------|-------------|---------------------------------------------------------------------------------|
-| Engineering Accuracy   | 10 Marks    | Correctness of formulas, units, and petroleum engineering logic                |
-| Code Quality           | 10 Marks    | Clean, modular code, proper error handling, and intuitive dashboard design     |
-| AI Integration         | 10 Marks    | Effective use of AI for complex tasks (not just simple copy-pasting)           |
-| Innovation             | 10 Marks    | Originality of the solution and its market relevance                           |
-| Presentation           | 20 Marks    | Clarity of communication and ability to answer technical questions             |
+Open the URL in a web browser to use the dashboard.
 
----
+## How to Use the App
 
-## Total: 60 Marks
+1. Start the app with `streamlit run app.py`.
+2. Use the sidebar to upload an Excel or CSV production dataset.
+3. Enter or confirm the field name.
+4. Select one or more wells for analysis.
+5. Use the navigation buttons in the sidebar:
+   - `Dashboard Overview` for field-level KPIs and summary plots
+   - `Production Data` for raw and cleaned production records
+   - `Decline Curve Analysis (DCA)` for Arps model fitting
+   - `EUR Prediction` for recovery forecasts
+   - `Model Settings` for decline model and forecast controls
+   - `Field Insights` for comparative well analytics
+   - `Reports & Export` for downloadable results
+   - `AI Interaction Log` for AI-assisted coding documentation
+6. Adjust filters, date ranges, production phase, smoothing, and rate type as needed.
+7. Export production data, DCA results, or EUR results from the reports page.
+
+## Decline Curve Analysis
+
+The app fits Arps decline models to production-rate history:
+
+- Exponential decline for constant percentage decline behavior
+- Harmonic decline for slower long-term decline behavior
+- Hyperbolic decline for more general decline behavior using a `b` factor
+
+For each model, the app calculates fit statistics such as R-squared, RMSE, and AIC. EUR is estimated by integrating the selected decline forecast until the economic limit or forecast horizon is reached.
+
+## Project Files
+
+- `app.py` - Main Streamlit web application
+- `requirements.txt` - Python package requirements
+- `README.md` - Project documentation
+- `AI_Interaction_Log.md` - AI-assisted development log, if included
+- `Volve_Production_By_Well.xlsx` - Sample production dataset
+- `PE 565 Capstone Project 2026.pdf` - Original capstone project brief
+
+## Notes
+
+- The app requires enough positive production history to fit decline models reliably.
+- DCA results are engineering estimates and should be reviewed with reservoir, operational, and economic context.
+- Forecast accuracy depends on production data quality, selected model assumptions, and the chosen economic limit.
