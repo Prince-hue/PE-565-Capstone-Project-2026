@@ -63,7 +63,7 @@ CSV files should contain production records with columns similar to:
 
 ### Included Dataset
 
-This repository includes `Volve_Production_By_Well.xlsx`, which can be uploaded through the app sidebar and used as a sample multi-well production dataset.
+This repository includes `Well Production Data.xlsx`, which can be uploaded through the app sidebar and used as a sample multi-well production dataset.
 
 ## Installation
 
